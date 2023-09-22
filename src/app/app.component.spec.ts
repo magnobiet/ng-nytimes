@@ -22,7 +22,7 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'The New York Times'`, () => {
+  it('should have as title "The New York Times"', () => {
     expect(component.title).toEqual('The New York Times');
   });
 
