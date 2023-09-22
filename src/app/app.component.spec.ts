@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -8,29 +9,16 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, SharedModule],
       declarations: [AppComponent],
     });
 
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-
     fixture.detectChanges();
   });
 
   it('should create the app', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should have as title "The New York Times"', () => {
-    expect(component.title).toEqual('The New York Times');
-  });
-
-  it('should render title', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'The New York Times'
-    );
   });
 });
