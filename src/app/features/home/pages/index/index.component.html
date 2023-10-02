@@ -1,1 +1,35 @@
-<p>Home page works!</p>
+<div *ngIf="isLoading; else content" class="w-full flex justify-center p-16">
+  <app-spinner />
+</div>
+
+<ng-template #content>
+  <div class="grid divide-y gap-8 flex-col">
+    <div class="grid grid-cols-3 divide-x">
+      <section
+        class="flex flex-col-reverse items-start gap-4"
+        *ngFor="let story of highlightStories; let first = first; let last = last"
+        [ngClass]="{ 'pr-4': first, 'pl-4': last, 'px-4': !first && !last }">
+        <div class="flex flex-col gap-4 p-4">
+          <h1 class="text-lg font-bold line-clamp-2" [attr.title]="story.title">{{ story.title }}</h1>
+
+          <p class="line-clamp-2" [attr.title]="story.abstract">{{ story.abstract }}</p>
+        </div>
+
+        <img class="w-full rounded-lg aspect-video" [attr.src]="story.multimedia[1].url" [attr.alt]="story.multimedia[0].caption">
+      </section>
+
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 pt-8">
+      <section class="flex flex-col-reverse items-start gap-4 border rounded" *ngFor="let story of stories">
+        <div class="flex flex-col gap-4 p-4">
+          <h1 class="text-lg font-bold line-clamp-2" [attr.title]="story.title">{{ story.title }}</h1>
+
+          <p class="line-clamp-3" [attr.title]="story.abstract">{{ story.abstract }}</p>
+        </div>
+
+        <img class="w-full rounded aspect-video" [attr.src]="story.multimedia[1].url" [attr.alt]="story.multimedia[0].caption" />
+      </section>
+    </div>
+  </div>
+</ng-template>
